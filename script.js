@@ -625,7 +625,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 14. Automated Sponsors Carousel (3 Banners Alternando)
+    // 14. Automated Sponsors Horizontal Slider (3 Banners Deslizando Lateralmente)
+    const track = document.getElementById('carousel-track');
     const slides = document.querySelectorAll('#sponsors-carousel .carousel-slide');
     const dots = document.querySelectorAll('#sponsors-carousel .dot');
     const prevBtn = document.getElementById('carousel-prev');
@@ -636,10 +637,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let carouselInterval = null;
 
     function goToSlide(index) {
-        if (slides.length === 0) return;
-        slides.forEach((s, i) => {
-            s.classList.toggle('active', i === index);
-        });
+        if (!track || slides.length === 0) return;
+        const percentage = -(index * 33.333333);
+        track.style.transform = `translateX(${percentage}%)`;
+
         dots.forEach((d, i) => {
             d.classList.toggle('active', i === index);
         });
