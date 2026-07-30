@@ -174,7 +174,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadJobsFromStorage() {
         const stored = localStorage.getItem(STORAGE_KEY);
         if (stored) {
-            try { return JSON.parse(stored); } catch (e) { console.error(e); }
+            try { 
+                const parsed = JSON.parse(stored);
+                if (Array.isArray(parsed) && parsed.length > 0) {
+                    return parsed;
+                }
+            } catch (e) { console.error(e); }
         }
         localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultJobs));
         return defaultJobs;
