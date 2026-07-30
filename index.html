@@ -3,55 +3,391 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Primeiro Projeto - Edielson</title>
+    <title>Samico IoT & Smart Automation Hub</title>
+    <meta name="description" content="Central Inteligente de Automação IoT e Monitoramento de Dispositivos por Samico IoT / Agasti">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="background-glow"></div>
-    <div class="container">
-        <header class="card-header">
-            <div class="badge">🚀 Projeto Configurado</div>
-            <h1>Bem-vindo ao seu Novo Workspace</h1>
-            <p class="subtitle">Este projeto está conectado diretamente ao seu perfil do GitHub (<strong>@edielsonsamico</strong>).</p>
-        </header>
+    <!-- Radial ambient glows -->
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+    <div class="ambient-glow glow-3"></div>
 
-        <main class="card-body">
-            <div class="status-grid">
-                <div class="status-card">
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-logo">
+                    <span class="logo-icon">⚡</span>
+                </div>
+                <div class="brand-text">
+                    <h2>Samico IoT</h2>
+                    <span class="brand-sub">Agasti Smart Suite</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#dashboard" class="nav-item active" data-tab="dashboard">
+                    <span class="icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#lighting" class="nav-item" data-tab="lighting">
+                    <span class="icon">💡</span>
+                    <span>Iluminação</span>
+                </a>
+                <a href="#climate" class="nav-item" data-tab="climate">
+                    <span class="icon">❄️</span>
+                    <span>Climatização</span>
+                </a>
+                <a href="#security" class="nav-item" data-tab="security">
+                    <span class="icon">🛡️</span>
+                    <span>Segurança</span>
+                </a>
+                <a href="#agri" class="nav-item" data-tab="agri">
+                    <span class="icon">🌱</span>
+                    <span>Automação Agro</span>
+                </a>
+                <a href="#terminal" class="nav-item" data-tab="terminal">
                     <span class="icon">💻</span>
-                    <h3>Sistema</h3>
-                    <p>Linux</p>
-                </div>
-                <div class="status-card">
-                    <span class="icon">🔐</span>
-                    <h3>Chave SSH</h3>
-                    <p>Autenticada</p>
-                </div>
-                <div class="status-card">
-                    <span class="icon">☁️</span>
-                    <h3>Nuvem</h3>
-                    <p>GitHub Sync</p>
-                </div>
-            </div>
+                    <span>Terminal & Logs</span>
+                </a>
+            </nav>
 
-            <div class="interactive-section">
-                <h3>Contador Interativo de Teste</h3>
-                <div class="counter-box">
-                    <button id="btn-decrement" class="btn btn-secondary">-</button>
-                    <span id="counter-value">0</span>
-                    <button id="btn-increment" class="btn btn-primary">+</button>
+            <div class="sidebar-footer">
+                <div class="user-pill">
+                    <div class="avatar">E</div>
+                    <div class="user-info">
+                        <span class="name">Edielson Samico</span>
+                        <span class="role">Admin Gateway</span>
+                    </div>
                 </div>
-                <p id="clock" class="clock-text">--:--:--</p>
             </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top App Bar -->
+            <header class="top-bar">
+                <div class="status-indicator">
+                    <span class="pulse-dot"></span>
+                    <span class="status-text">GATEWAY ONLINE</span>
+                    <span class="badge badge-tech">v2.4.0 (Agasti OS)</span>
+                </div>
+
+                <div class="top-actions">
+                    <div class="clock-display" id="live-clock">
+                        <span class="time">00:00:00</span>
+                        <span class="date">BRT • Realtime</span>
+                    </div>
+                    <button class="btn btn-outline" id="btn-emergency">
+                        <span class="icon">🚨</span> Emergency Stop
+                    </button>
+                    <button class="btn btn-primary" id="btn-add-device">
+                        <span class="icon">+</span> Novo Dispositivo
+                    </button>
+                </div>
+            </header>
+
+            <!-- TAB 1: DASHBOARD -->
+            <section class="tab-content active" id="tab-dashboard">
+                <div class="section-header">
+                    <div>
+                        <h1>Painel de Controle Principal</h1>
+                        <p class="subtitle">Visão geral dos sensores, atuadores e telemetria em tempo real.</p>
+                    </div>
+                    <div class="quick-presets">
+                        <span class="preset-label">Modos Rápidos:</span>
+                        <button class="preset-btn" data-preset="home">🏠 Chegando em Casa</button>
+                        <button class="preset-btn" data-preset="cinema">🎬 Modo Cinema</button>
+                        <button class="preset-btn" data-preset="night">🌙 Modo Noturno</button>
+                        <button class="preset-btn" data-preset="eco">🌱 Eco Savings</button>
+                    </div>
+                </div>
+
+                <!-- KPI Metric Cards Grid -->
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Dispositivos Conectados</span>
+                            <span class="kpi-icon icon-blue">📡</span>
+                        </div>
+                        <div class="kpi-value"><span id="kpi-active-count">14</span> <small>/ 16 ON</small></div>
+                        <div class="kpi-footer text-emerald">
+                            <span>▲ 100% de Uptime nas últimas 24h</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Consumo de Energia</span>
+                            <span class="kpi-icon icon-amber">⚡</span>
+                        </div>
+                        <div class="kpi-value"><span id="kpi-power">2.4</span> <small>kW/h</small></div>
+                        <div class="kpi-footer text-sky">
+                            <span>⚡ Estimativa: R$ 4,20 / dia</span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Temperatura Média</span>
+                            <span class="kpi-icon icon-cyan">🌡️</span>
+                        </div>
+                        <div class="kpi-value"><span id="kpi-temp">23.8</span> <small>°C</small></div>
+                        <div class="kpi-footer">
+                            <span>Umidade: <strong id="kpi-humidity">58%</strong> | AQI: <strong class="text-emerald">BOM (28)</strong></span>
+                        </div>
+                    </div>
+
+                    <div class="kpi-card">
+                        <div class="kpi-header">
+                            <span class="kpi-title">Rede IoT (MQTT / Zigbee)</span>
+                            <span class="kpi-icon icon-purple">📶</span>
+                        </div>
+                        <div class="kpi-value">12 <small>ms Ping</small></div>
+                        <div class="kpi-footer text-purple">
+                            <span>Signal Quality: Excellent (98%)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Realtime Chart Section -->
+                <div class="dashboard-grid">
+                    <div class="glass-panel chart-panel">
+                        <div class="panel-header">
+                            <h3>Telemetria em Tempo Real (Potência kW x Temp °C)</h3>
+                            <div class="chart-legend">
+                                <span class="legend-item"><span class="dot dot-blue"></span> Potência (kW)</span>
+                                <span class="legend-item"><span class="dot dot-amber"></span> Temperatura (°C)</span>
+                            </div>
+                        </div>
+                        <div class="canvas-container">
+                            <canvas id="telemetryChart" height="200"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel activity-panel">
+                        <div class="panel-header">
+                            <h3>Atividades Recentes</h3>
+                            <button class="btn-text" id="btn-clear-activity">Limpar</button>
+                        </div>
+                        <ul class="activity-list" id="activity-stream">
+                            <!-- Dynamic items -->
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Quick Device Grid -->
+                <div class="section-title">
+                    <h2>Dispositivos Favoritos</h2>
+                </div>
+                <div class="devices-grid" id="favorites-grid">
+                    <!-- Dynamic devices -->
+                </div>
+            </section>
+
+            <!-- TAB 2: LIGHTING -->
+            <section class="tab-content" id="tab-lighting">
+                <div class="section-header">
+                    <div>
+                        <h1>Iluminação Inteligente</h1>
+                        <p class="subtitle">Controle de lâmpadas RGB, fita LED, intensidade e temperatura de cor.</p>
+                    </div>
+                    <button class="btn btn-outline" id="btn-toggle-all-lights">Desligar Todas</button>
+                </div>
+                <div class="devices-grid" id="lighting-grid">
+                    <!-- Dynamic lighting devices -->
+                </div>
+            </section>
+
+            <!-- TAB 3: CLIMATE -->
+            <section class="tab-content" id="tab-climate">
+                <div class="section-header">
+                    <div>
+                        <h1>Climatização & Qualidade do Ar</h1>
+                        <p class="subtitle">Ajuste de termostatos, purificadores de ar e desumidificadores.</p>
+                    </div>
+                </div>
+                <div class="climate-container">
+                    <div class="glass-panel thermostat-main">
+                        <h2>Termostato da Sala Principal</h2>
+                        <div class="thermostat-dial">
+                            <div class="dial-circle">
+                                <span class="dial-temp" id="thermostat-val">22.0</span>
+                                <span class="dial-unit">°C</span>
+                                <span class="dial-mode" id="thermostat-mode-label">REFRIGERANDO</span>
+                            </div>
+                        </div>
+                        <div class="thermostat-controls">
+                            <button class="btn-dial" id="temp-down">-</button>
+                            <div class="mode-selector">
+                                <button class="mode-btn active" data-mode="cool">❄️ Frio</button>
+                                <button class="mode-btn" data-mode="heat">🔥 Calor</button>
+                                <button class="mode-btn" data-mode="fan">💨 Ventilar</button>
+                            </div>
+                            <button class="btn-dial" id="temp-up">+</button>
+                        </div>
+                    </div>
+                    <div class="devices-grid" id="climate-grid">
+                        <!-- Dynamic climate devices -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: SECURITY -->
+            <section class="tab-content" id="tab-security">
+                <div class="section-header">
+                    <div>
+                        <h1>Central de Segurança & Monitoramento</h1>
+                        <p class="subtitle">Fechaduras biométricas, câmeras ao vivo e alarme perimetral.</p>
+                    </div>
+                    <button class="btn btn-primary" id="btn-arm-alarm">🛡️ Armar Alarme Geral</button>
+                </div>
+
+                <div class="security-layout">
+                    <div class="glass-panel camera-feed">
+                        <div class="camera-header">
+                            <span class="cam-title">🔴 CAM-01: Entrada Principal (Ao Vivo)</span>
+                            <span class="cam-timestamp" id="cam-time">REC 12:06:41</span>
+                        </div>
+                        <div class="video-container">
+                            <div class="scanline"></div>
+                            <div class="camera-placeholder">
+                                <div class="cam-overlay">
+                                    <span class="grid-cross +1"></span>
+                                    <span class="grid-cross +2"></span>
+                                    <div class="motion-badge">MOVIMENTO DETECTADO: NENHUM</div>
+                                </div>
+                                <span class="cam-icon">📹</span>
+                                <p>Sinal de Vídeo HD Criptografado (RTSP Stream)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="security-controls">
+                        <div class="glass-panel lock-card">
+                            <h3>Fechadura Biométrica</h3>
+                            <div class="lock-status" id="door-lock-status">
+                                <span class="status-icon">🔒</span>
+                                <span class="status-txt">PORTA TRANCADA</span>
+                            </div>
+                            <button class="btn btn-primary w-full" id="btn-toggle-lock">Alternar Tranca</button>
+                        </div>
+
+                        <div class="glass-panel alarm-card">
+                            <h3>Status do Alarme</h3>
+                            <div class="alarm-state armed" id="alarm-state-box">
+                                <span>ARMADO (MODO NOITE)</span>
+                            </div>
+                            <p class="small-desc">Sensores de presença ativos em 8 zonas.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 5: AGRI / AUTOMATION -->
+            <section class="tab-content" id="tab-agri">
+                <div class="section-header">
+                    <div>
+                        <h1>Automação Agrícola (Agasti SmartAgro)</h1>
+                        <p class="subtitle">Irrigação automatizada, controle de estufa e solo.</p>
+                    </div>
+                </div>
+                <div class="agri-grid">
+                    <div class="glass-panel agri-card">
+                        <h3>🌱 Irrigação Automatizada</h3>
+                        <p>Umidade do Solo: <strong class="text-emerald">64% (Ideal)</strong></p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 64%;"></div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn btn-outline" id="btn-irrigate">Ativar Válvula Solenoide (5m)</button>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel agri-card">
+                        <h3>☀️ Iluminação UV para Cultivo</h3>
+                        <p>Ciclo Circadiano: <strong class="text-amber">Ativo (Fase Vegetativa)</strong></p>
+                        <div class="progress-bar">
+                            <div class="progress-fill bg-purple" style="width: 80%;"></div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn btn-outline" id="btn-uv">Alternar Espectro UV</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 6: TERMINAL -->
+            <section class="tab-content" id="tab-terminal">
+                <div class="section-header">
+                    <div>
+                        <h1>Terminal CLI & Logs do Sistema</h1>
+                        <p class="subtitle">Comandos diretos e streaming de eventos MQTT/WebSockets.</p>
+                    </div>
+                    <button class="btn btn-outline" id="btn-clear-logs">Limpar Logs</button>
+                </div>
+
+                <div class="terminal-container">
+                    <div class="terminal-body" id="terminal-output">
+                        <div class="log-line sys">[SYSTEM] Samico IoT Core v2.4.0 started.</div>
+                        <div class="log-line sys">[MQTT] Connected to broker (mqtt://broker.samico.local:1883)</div>
+                        <div class="log-line info">[INFO] 16 actuators synchronized.</div>
+                    </div>
+                    <div class="terminal-input-row">
+                        <span class="prompt">samico@agasti-hub:~$</span>
+                        <input type="text" id="terminal-input" placeholder="Digite um comando (ex: help, status, toggle light, lock)...">
+                    </div>
+                </div>
+            </section>
+
         </main>
-
-        <footer>
-            <p>Criado com sucesso • Salvo em <code>/home/samico/Documentos/meu-primeiro-projeto</code></p>
-        </footer>
     </div>
+
+    <!-- Modal: Add Device -->
+    <div class="modal-backdrop" id="modal-add">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Adicionar Novo Dispositivo IoT</h3>
+                <button class="modal-close" id="modal-close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Nome do Dispositivo</label>
+                    <input type="text" id="new-dev-name" placeholder="Ex: Sensor de Fumaça Cozinha">
+                </div>
+                <div class="form-group">
+                    <label>Categoria</label>
+                    <select id="new-dev-cat">
+                        <option value="lighting">Iluminação</option>
+                        <option value="climate">Climatização</option>
+                        <option value="security">Segurança</option>
+                        <option value="agri">Agrícola</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Protocolo de Comunicação</label>
+                    <select id="new-dev-proto">
+                        <option value="zigbee">Zigbee 3.0</option>
+                        <option value="wifi">Wi-Fi (ESP32 / Tasmota)</option>
+                        <option value="ble">Bluetooth Low Energy</option>
+                        <option value="lora">LoRaWAN (Long Range)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="btn-modal-cancel">Cancelar</button>
+                <button class="btn btn-primary" id="btn-modal-save">Salvar Dispositivo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+
     <script src="script.js"></script>
 </body>
 </html>
