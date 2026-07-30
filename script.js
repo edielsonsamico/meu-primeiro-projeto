@@ -625,6 +625,73 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // 14. Automated Sponsors Carousel (3 Banners Alternando)
+    const slides = document.querySelectorAll('#sponsors-carousel .carousel-slide');
+    const dots = document.querySelectorAll('#sponsors-carousel .dot');
+    const prevBtn = document.getElementById('carousel-prev');
+    const nextBtn = document.getElementById('carousel-next');
+    const carouselWrapper = document.getElementById('sponsors-carousel');
+
+    let currentSlide = 0;
+    let carouselInterval = null;
+
+    function goToSlide(index) {
+        if (slides.length === 0) return;
+        slides.forEach((s, i) => {
+            s.classList.toggle('active', i === index);
+        });
+        dots.forEach((d, i) => {
+            d.classList.toggle('active', i === index);
+        });
+        currentSlide = index;
+    }
+
+    function nextSlide() {
+        if (slides.length === 0) return;
+        const nextIndex = (currentSlide + 1) % slides.length;
+        goToSlide(nextIndex);
+    }
+
+    function prevSlide() {
+        if (slides.length === 0) return;
+        const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+        goToSlide(prevIndex);
+    }
+
+    function startCarousel() {
+        stopCarousel();
+        carouselInterval = setInterval(nextSlide, 4500); // Troca automática a cada 4.5 segundos
+    }
+
+    function stopCarousel() {
+        if (carouselInterval) {
+            clearInterval(carouselInterval);
+            carouselInterval = null;
+        }
+    }
+
+    if (slides.length > 0) {
+        if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); startCarousel(); });
+        if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); startCarousel(); });
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const idx = parseInt(dot.getAttribute('data-index'), 10);
+                if (!isNaN(idx)) {
+                    goToSlide(idx);
+                    startCarousel();
+                }
+            });
+        });
+
+        if (carouselWrapper) {
+            carouselWrapper.addEventListener('mouseenter', stopCarousel);
+            carouselWrapper.addEventListener('mouseleave', startCarousel);
+        }
+
+        startCarousel();
+    }
+
     // Initial Load Render
     renderJobs();
 });

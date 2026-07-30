@@ -58,7 +58,7 @@
             </div>
         </section>
 
-        <!-- Sponsors & Partner Networks Banner -->
+        <!-- Sponsors & Partner Networks Carousel Banner -->
         <section class="sponsors-section">
             <div class="sponsors-container">
                 <div class="sponsors-header">
@@ -66,10 +66,32 @@
                     <h3 class="sponsors-title">Empresas que impulsionam a comunidade Samico Vagas TI</h3>
                 </div>
                 
-                <div class="sponsors-banner-wrapper">
-                    <div class="sponsors-banner-img-box">
-                        <img src="sponsors_banner.jpg" alt="Banner Redes Patrocinadoras Samico Vagas TI" class="sponsors-banner-img">
+                <div class="sponsors-banner-wrapper" id="sponsors-carousel">
+                    <!-- Carousel Slides Container -->
+                    <div class="sponsors-carousel-track">
+                        <div class="carousel-slide active">
+                            <img src="sponsors_banner.jpg" alt="Banner Patrocinadores 1 - Future Tech Innovators" class="sponsors-banner-img">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="sponsors_banner_2.jpg" alt="Banner Patrocinadores 2 - Nexus AI & Aether Cloud" class="sponsors-banner-img">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="sponsors_banner_3.jpg" alt="Banner Patrocinadores 3 - Cybersecurity & Smart Automation" class="sponsors-banner-img">
+                        </div>
                     </div>
+
+                    <!-- Navigation Arrows -->
+                    <button class="carousel-nav nav-prev" id="carousel-prev" aria-label="Banner anterior">❮</button>
+                    <button class="carousel-nav nav-next" id="carousel-next" aria-label="Próximo banner">❯</button>
+
+                    <!-- Indicator Dots -->
+                    <div class="carousel-dots" id="carousel-dots">
+                        <span class="dot active" data-index="0"></span>
+                        <span class="dot" data-index="1"></span>
+                        <span class="dot" data-index="2"></span>
+                    </div>
+
+                    <!-- Controls Bar -->
                     <div class="sponsors-banner-bar">
                         <div class="sponsor-brand-chips">
                             <span class="sponsor-chip">💎 Nexus Dynamics</span>
