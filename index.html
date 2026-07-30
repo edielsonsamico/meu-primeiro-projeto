@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Samico Vagas TI | Portal de Curadoria de Vagas de Tecnologia</title>
     <meta name="description" content="Apenas vagas de TI validadas e verificadas manualmente pelos nossos especialistas em tecnologia. Evite processos intermináveis.">
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=3">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -54,6 +54,35 @@
                     <span class="search-icon">🔍</span>
                     <input type="text" id="search-input" placeholder="Buscar por título, empresa ou tecnologia (ex: React, AWS, Docker)...">
                     <button class="btn btn-primary" id="btn-clear-search">Limpar</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sponsors & Partner Networks Banner -->
+        <section class="sponsors-section">
+            <div class="sponsors-container">
+                <div class="sponsors-header">
+                    <span class="sponsors-badge">🤝 REDES PATROCINADORAS & PARCEIROS TECH</span>
+                    <h3 class="sponsors-title">Empresas que impulsionam a comunidade Samico Vagas TI</h3>
+                </div>
+                
+                <div class="sponsors-banner-wrapper">
+                    <div class="sponsors-banner-img-box">
+                        <img src="sponsors_banner.jpg" alt="Banner Redes Patrocinadoras Samico Vagas TI" class="sponsors-banner-img">
+                    </div>
+                    <div class="sponsors-banner-bar">
+                        <div class="sponsor-brand-chips">
+                            <span class="sponsor-chip">💎 Nexus Dynamics</span>
+                            <span class="sponsor-chip">🛡️ Aetheris Solutions</span>
+                            <span class="sponsor-chip">⚡ Quantum Leap</span>
+                            <span class="sponsor-chip">🪐 Orbital Systems</span>
+                            <span class="sponsor-chip">💡 Luminate Chips</span>
+                            <span class="sponsor-chip">🌐 Synapse Networks</span>
+                        </div>
+                        <button class="btn btn-sponsor-action" id="btn-become-sponsor">
+                            ⭐ Seja uma Empresa Patrocinadora
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -278,7 +307,7 @@
                             <input type="email" id="form-email" placeholder="talentos@empresa.com">
                         </div>
                         <div class="form-group">
-                            <label>WhatsApp da Empresa (Apenas números)</label>
+                            <label>WhatsApp da Empresa <small style="color: #fbbf24; font-weight: 500;">(Canal ativo apenas se marcar Vaga VIP ⭐)</small></label>
                             <input type="text" id="form-whatsapp" placeholder="11999998888">
                         </div>
                     </div>
@@ -296,6 +325,30 @@
                         <button type="submit" class="btn btn-primary">Salvar Vaga Curada</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 5: Sponsor Request / Partner Contact -->
+    <div class="modal-backdrop" id="modal-sponsor">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>⭐ Seja uma Empresa Patrocinadora</h3>
+                <button class="modal-close" id="sponsor-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-intro">Destaque sua marca, receba candidatos altamente qualificados e patrocine vagas em destaque na rede Samico Vagas TI.</p>
+                <div class="sponsor-benefits-list">
+                    <div class="benefit-item">✨ <strong>Borda Neon & Fixação no Topo</strong> para todas as vagas da empresa.</div>
+                    <div class="benefit-item">💬 <strong>Canal Aberto de WhatsApp</strong> direto com o recrutador (Recurso VIP).</div>
+                    <div class="benefit-item">🌐 <strong>Exposição no Banner Oficial</strong> de redes parceiras da plataforma.</div>
+                </div>
+                <div class="apply-options" style="margin-top: 1.5rem;">
+                    <a href="https://wa.me/5511999998888?text=Olá!%20Gostaria%20de%20patrocinar%20a%20rede%20Samico%20Vagas%20TI" target="_blank" class="apply-btn-option opt-whatsapp">
+                        <span>💬 Falar com a Equipe Comercial no WhatsApp</span>
+                        <span>Contatar ➔</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

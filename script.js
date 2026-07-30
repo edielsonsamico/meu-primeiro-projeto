@@ -436,15 +436,25 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         }
 
+        // Exclusividade WhatsApp: Apenas Vagas VIP possuem acesso ao canal direto de WhatsApp da empresa
         if (job.companyWhatsapp) {
-            const cleanWa = job.companyWhatsapp.replace(/\D/g, '');
-            const waText = encodeURIComponent(`Olá! Gostaria de me candidatar à vaga de "${job.title}" divulgada na Samico Vagas TI.`);
-            maOptions.innerHTML += `
-                <a href="https://wa.me/55${cleanWa}?text=${waText}" target="_blank" class="apply-btn-option opt-whatsapp">
-                    <span>💬 Falar no WhatsApp da Empresa (${job.companyWhatsapp})</span>
-                    <span>Enviar Mensagem ➔</span>
-                </a>
-            `;
+            if (job.isVIP) {
+                const cleanWa = job.companyWhatsapp.replace(/\D/g, '');
+                const waText = encodeURIComponent(`Olá! Gostaria de me candidatar à vaga de "${job.title}" divulgada na Samico Vagas TI.`);
+                maOptions.innerHTML += `
+                    <a href="https://wa.me/55${cleanWa}?text=${waText}" target="_blank" class="apply-btn-option opt-whatsapp">
+                        <span>💬 Falar no WhatsApp da Empresa (${job.companyWhatsapp})</span>
+                        <span>Enviar Mensagem ➔</span>
+                    </a>
+                `;
+            } else {
+                maOptions.innerHTML += `
+                    <div class="apply-btn-option opt-whatsapp-locked" title="Contato por WhatsApp exclusivo para vagas VIP">
+                        <span>🔒 WhatsApp da Empresa (${job.companyWhatsapp})</span>
+                        <span class="vip-only-badge">⭐ Exclusivo Vagas VIP</span>
+                    </div>
+                `;
+            }
         }
 
         if (job.companyEmail) {
@@ -595,6 +605,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderJobs();
                 showToast('Base de vagas resetada para os padrões. 🔄');
             }
+        });
+    }
+
+    // 13. Sponsor Modal Listeners
+    const btnBecomeSponsor = document.getElementById('btn-become-sponsor');
+    const modalSponsor = document.getElementById('modal-sponsor');
+    const sponsorClose = document.getElementById('sponsor-close');
+
+    if (btnBecomeSponsor && modalSponsor) {
+        btnBecomeSponsor.addEventListener('click', () => {
+            modalSponsor.classList.add('active');
+        });
+    }
+
+    if (sponsorClose && modalSponsor) {
+        sponsorClose.addEventListener('click', () => {
+            modalSponsor.classList.remove('active');
         });
     }
 
